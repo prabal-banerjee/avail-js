@@ -1,0 +1,27 @@
+{
+  "name": "avail-js",
+  "version": "0.0.1",
+  "description": "Library to interact with Avail",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx jest --forceExit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prabal-banerjee/avail-js.git"
+  },
+  "keywords": [
+    "avail",
+    "data-availability",
+    "modular"
+  ],
+  "author": "Prabal Banerjee <prabal@availproject.org>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prabal-banerjee/avail-js/issues"
+  },
+  "homepage": "https://github.com/prabal-banerjee/avail-js#readme",
+  "dependencies": {
+    "@polkadot/api": "^10.3.4"
+  }
+}
