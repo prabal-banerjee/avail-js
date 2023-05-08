@@ -151,19 +151,20 @@ function createApi(network = 'testnet') {
     });
 }
 
-async function transfer(api, secret, receiver, amount) {
+async function transfer({api, mnemonic, dest, amount, onResult }) {
     const keyring = new Keyring({ type: 'sr25519' });
-    const account = keyring.addFromUri(secret);
+    const account = keyring.addFromUri(mnemonic);
     let nonce = await api.rpc.system.accountNextIndex(account.address);
     const options = { app_id: 0, nonce: nonce };
     const multiplier = 1_000_000_000_000_000_000n;
     const amountInAVL = BigInt(amount) * multiplier;
     console.log(`Amount: ${amountInAVL} AVL`);
-    return await api.tx.balances.transfer(receiver, amountInAVL)
-        .signAndSend(
-            account,  // sender
-            options, // options
-        );
+    const transfer = api.tx.balances.transfer(dest, amountInAVL);
+    if (onResult) {
+      return await transfer.signAndSend(account, options, onResult)
+    } else {
+      return await transfer.signAndSend(account, options)
+    }
 }
 
 module.exports = {

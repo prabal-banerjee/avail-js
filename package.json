@@ -21,7 +21,7 @@
     "url": "https://github.com/prabal-banerjee/avail-js/issues"
   },
   "homepage": "https://github.com/prabal-banerjee/avail-js#readme",
-  "dependencies": {
-    "@polkadot/api": "^10.3.4"
+  "resolutions": {
+    "@polkadot/api": "^7.6.1"
   }
 }
