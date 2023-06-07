@@ -1,3 +1,5 @@
+require('dotenv/config')
+
 const { ApiPromise, WsProvider, Keyring } = require("@polkadot/api");
 // import { KeyringPair } from '@polkadot/keyring/types';
 
@@ -6,7 +8,7 @@ function createApi(network = 'testnet') {
     let provider;
     switch (network) {
         case 'testnet': {
-            provider = new WsProvider('wss://testnet.avail.tools/ws');
+            provider = new WsProvider(process.env.WS);
             break;
         }
         case 'devnet': {
@@ -14,7 +16,7 @@ function createApi(network = 'testnet') {
             break;
         }
         case 'local': {
-            provider = new WsProvider();
+            provider = new WsProvider('ws://127.0.0.1:9944');
             break;
         }
         default: {
@@ -23,6 +25,7 @@ function createApi(network = 'testnet') {
     }   
 
     return ApiPromise.create({
+        noInitWarn: true,
         provider,
         rpc: {
             kate: {
